@@ -1,0 +1,57 @@
+.cover{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	top:0;
+	background: rgba(0,0,0,0.5);
+	z-index: 20;
+}
+
+.dialog{
+	width: 550px;
+	position: absolute;
+	left: 50%;
+	margin-left: -276px;
+	font-size: 27px;
+	background: rgba(0,0,0,0.8);
+	border-radius: 3px;
+	padding:30px 0 0 0;
+	box-shadow: 0 0 8px #fff;
+}
+
+.dialogInner{
+	padding:5px;
+	min-height: 50px;
+}
+.dialogClose{
+	position: absolute;
+	right: -23px;
+	top: -23px;
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	background: url(demo/images/close.png) no-repeat center center;
+}
+
+
+
+.aTagButton {
+	box-shadow: 0 0 2px #000;
+	display: inline-block;
+	text-align: center;
+	background: -webkit-gradient(linear,left top,left bottom,from(#ecebeb),color-stop(50%,#dfdddd),to(#ecebeb));
+	color: rgb(54, 50, 50);
+	border-radius: 3px;
+	cursor: pointer;
+	vertical-align: middle;
+	font-size: 20px;
+	padding: 10px 20px;
+	border: 0;
+}
+
+.orangeButton {
+	background: -webkit-gradient(linear,left top,left bottom,from(#eb6a37),color-stop(50%,#e86736),to(#eb6a37));
+	color: #fff;
+}
+

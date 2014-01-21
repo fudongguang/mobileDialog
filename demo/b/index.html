@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8"/>
+    <title>demo</title>
+    <link rel="stylesheet" type="text/css" href="../../dialog.css"/>
+    <link rel="stylesheet" type="text/css" href="stepDialog.css"/>
+    <script type="text/javascript" src="http://miliguli.com/wp-content/themes/chromeA/js/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="../../dialog.js"></script>
+    <script type="text/javascript" src="step.js"></script>
+    <script type="text/javascript" src="ejs_production.js"></script>
+</head>
+<body>
+
+<div class="wrapper">
+    <a href="#" onclick="showDialogB();return false;">弹窗扩展</a>
+</div>
+
+<script type="text/javascript">
+    var dialogA,dialogB;
+
+    function showDialogB(){
+        var config={
+            className:"stepDialog",
+            msg:'<div style="line-height: 40px;">麻烦点击输入电话号码<br/>可以分别测试下正确输入和错误输入。</div>',
+            buttons:[['输入电话号码']],
+            funs:[function(){
+                showInputDialog();
+            }]
+        };
+
+        dialogA = com.dialog(config);//图层赋值
+
+    }
+
+
+    function showInputDialog(){
+        var config={
+            url:'tpl/input',
+            className:"stepDialog",
+            buttons:[['确定'],['取消','J-dialogClose']],
+            funs:[function(){
+                var val = $('#phoneNum').val().trim(),config;
+                if(!/^1\d{10}/.test(val)){
+                    config = {
+                        msg:'号码输入错误',
+                        closeBack:function(){
+                            $('#phoneNum').focus();
+                        }
+                    };
+                    com.alert(config);
+                }else{
+                    config = {
+                        msg:'成功，Demo完成',
+                        closeBack:function(){
+                            $(dialogA).remove();//删除图层
+                            $(dialogB).remove();//删除图层
+                        },
+                        buttons:[['确定','J-dialogClose']]
+                    };
+                    com.alert(config);
+                }
+            }]
+        };
+
+        dialogB = com.dialog(config);//图层赋值
+
+        $('#phoneNum').focus();
+
+    }
+</script>
+
+</body>
+</html>

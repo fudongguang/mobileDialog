@@ -1,0 +1,108 @@
+<project name="mergeData" basedir="../">
+    <tstamp>
+        <format property="date" pattern="yyyy/MM/dd"/>
+        <format property="time" pattern="hh:mm aa"/>
+        <format property="dateTime" pattern="yyyMMddHHmmss"/>
+    </tstamp>
+
+    <property file="${basedir}/build/build.properties"/>
+
+    <target name="concat" description="concat js">
+        <concat destfile="${dir.destfile.js}" overwrite="true">
+            <filelist dir="${dir.js}" files="ejs_production.js,dialog.js,step.js,json2.js,common.js"/>
+        </concat>
+
+        <concat destfile="${dir.destfile.css}" overwrite="true">
+            <filelist dir="${dir.css}" files="global.css,step.css"/>
+        </concat>
+    </target>
+
+
+    <target name="compress" description="compress js and css" depends="concat">
+        <java classpath="" jar="${dir.lib}/yuicompressor-2.4.8pre.jar" fork="true" failonerror="true">
+            <arg line="--type js ${dir.destfile.js} -o ${dir.compress}/build.js"/>
+        </java>
+
+        <java jar="${dir.lib}/yuicompressor-2.4.8pre.jar" fork="true" failonerror="true">
+            <arg line="--type css ${dir.destfile.css} -o ${dir.compress}/build.css"/>
+        </java>
+    </target>
+
+
+    <target name="build" description="构建正式版本" depends="compress">
+        <delete dir="${dir.output}"/>
+        <mkdir dir="${dir.output}"/>
+        <copy todir="${dir.output}" >
+            <fileset dir="${basedir}">
+            </fileset>
+        </copy>
+
+        <delete dir="${dir.output}/output"/>
+        <delete dir="${dir.output}/build"/>
+        <delete dir="${dir.output}/zip"/>
+        <delete dir="${dir.output}/js"/>
+        <delete dir="${dir.output}/css"/>
+        <delete dir="${dir.output}/tool"/>
+
+        <mkdir dir="${dir.output}/build"/>
+        <copy todir="${dir.output}/build">
+            <fileset dir="${dir.build}/build"/>
+        </copy>
+
+        <copy todir="${dir.output}/build/">
+            <filelist dir="${basedir}/js" files="zepto.min.js,viewport.js"/>
+        </copy>
+
+        <delete dir="${dir.output}">
+            <include name="*.svn"/>
+            <include name="build.xml"/>
+        </delete>
+
+        <replaceregexp match="${tokenHeadA}[\d\D]+${tokenHeadB}" byline="false" replace="${tokenHeadC}">
+            <fileset dir="${dir.output}"  includes="*.html"/>
+        </replaceregexp>
+
+        <replaceregexp match="${tokenFooterA}[\d\D]+${tokenFooterB}" byline="false" replace="${tokenFooterC}">
+            <fileset dir="${dir.output}"  includes="*.html"/>
+        </replaceregexp>
+
+        <replaceregexp match="\?vv=\d+" replace="?vv=${dateTime}"  byline="true">
+            <fileset dir="${dir.output}"  includes="*.html"/>
+        </replaceregexp>
+    </target>
+
+    <target name="test" depends="build">
+        <antcall target="scptest"/>
+        <sshexec host="10.1.15.123" username="root" password="proxy123" command="cd /data/html/sh/;sh run.sh mergeData" timeout="60000" trust="true"/>
+    </target>
+
+
+    <target name="product" depends="build">
+        <replace file="${dir.output}/build/build.js" token="mergeDatatest" value="mergeData"/>
+        <replace file="${dir.output}/index2.8.html" token="mergeDatatest" value="mergeData"/>
+        <antcall target="scpproduct"/>
+    </target>
+
+    <target name="zip"  description="zip">
+        <delete dir="${dir.zip}"/>
+        <mkdir dir="${dir.zip}"/>
+        <zip basedir="${dir.output}" destfile="${dir.zip}/mergeData.zip"/>
+    </target>
+
+    <target name="scptest" depends="zip">
+        <scp todir="root:proxy123@10.1.15.123:/data/html/zip">
+            <fileset dir="${dir.zip}">
+                <include name="*zip"/>
+            </fileset>
+        </scp>
+    </target>
+
+    <target name="scpproduct" depends="zip">
+        <scp todir="fudongguang:fdg123$%^@dev.geili.cn:.">
+            <fileset dir="${dir.zip}">
+                <include name="*zip"/>
+            </fileset>
+        </scp>
+    </target>
+
+</project>

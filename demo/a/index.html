@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8"/>
+    <title>demo</title>
+    <link rel="stylesheet" type="text/css" href="../../dialog.css"/>
+    <link rel="stylesheet" type="text/css" href="demo.css"/>
+    <script type="text/javascript" src="http://miliguli.com/wp-content/themes/chromeA/js/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="../../dialog.js"></script>
+</head>
+<body>
+
+<div class="wrapper">
+    <a href="#" onclick="showDialogA();return false;">大众弹窗</a>
+</div>
+
+<script type="text/javascript">
+    function showDialogA(){
+        dialog({
+            content:'<div><a href="#" class="dialogClose J-dialogClose"></a>' +
+                    '<div>您是第一次来本站吗？</div>' +
+                    '<p><button class="J-dialogButton aTagButton orangeButton">确认</button>' +
+                    '<button class="J-dialogButton J-dialogClose aTagButton orangeButton">取消</button>' +
+                    '</p>',//弹窗显示的内容 必须
+            closeBack:function(){//关闭后的回调函数 可选
+                console.log('点击了取消按钮,弹窗将关闭。');
+            },
+            className:'demoDialog',//弹窗指定样式类
+            funs:[function(){//类J-dialogButton对应的绑定的函数
+                console.log('点击了确定按钮');
+                alert('点击了确定按钮');
+            },function(){
+                console.log('点击了取消按钮,弹窗将关闭。');
+            }]
+        });
+    }
+
+</script>
+
+</body>
+</html>

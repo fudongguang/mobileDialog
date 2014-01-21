@@ -1,0 +1,39 @@
+/*confirmDialog*/
+.stepDialog{
+	color: #fff;
+	text-align: center;
+}
+
+.stepDialog .aTagButton{
+	margin-right: 30px;
+	margin-left: 30px;
+}
+
+.stepDialog .inputText {
+	border: 1px solid #C8C8C8;
+	height: 35px;
+	padding: 3px;
+	vertical-align: middle;
+	width: 50%;
+	font-size: 25px;
+	outline: 0;
+	border-radius: 5px;
+}
+
+/**alertDialog*/
+.alertDialog{
+	color: #fff;
+}
+
+.alertDialog .dialog{
+	width: 300px;
+	position: absolute;
+	left: 50%;
+	margin-left: -150px;
+	font-size: 27px;
+	background: rgba(0,0,0,0.8);
+	border-radius: 3px;
+	padding:30px 0 0 0;
+	box-shadow: 0 0 8px #fff;
+	text-align: center;
+}

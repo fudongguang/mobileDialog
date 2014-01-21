@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=640, target-densitydpi=320, user-scalable=0" name="viewport"/>
+    <title>帐号升级</title>
+    <!--tokenHeadA-->
+    <link rel="stylesheet" type="text/css" href="css/global.css"/>
+    <link rel="stylesheet" type="text/css" href="css/step.css"/>
+    <script type="text/javascript" src="js/viewport.js"></script>
+    <!--tokenHeadB-->
+</head>
+<body class="bodyLoading">
+<div class="wrapper step3">
+    <div class="content">
+        <div class="tag">
+            <label class="blockLable">请输入要合并到的手机号码：</label>
+            <input type="tel" maxlength="11" class="inputText" id="phone" />
+            <div class="blockLable">此手机号码用来接收验证码，请仔细填写</div>
+            <button class="aTagButton orangeButton" id="getCode" style="width: 100%;">获取验证码</button>
+        </div>
+        <div class="tag">
+            <label class="blockLable">请输入验证码：</label>
+            <input type="tel" maxlength="11" class="inputText" id="code"/>
+            <label class="blockLable">
+            <button class="aTagButton orangeButton" style="width: 100%" id="checkCode">继 续</button>
+            </label>
+        </div>
+    </div>
+</div>
+
+<!--tokenFooterA-->
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/ejs_production.js"></script>
+<script type="text/javascript" src="js/dialog.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/step.js"></script>
+<!--tokenFooterB-->
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+<div>
+	<a href="#" class="dialogClose J-dialogClose"></a>
+	<div>
+        <p>请输入电话号码</p>
+        <input type="text" class="inputText" id="phoneNum" maxlength="11"/>
+    </div>
+	<p>
+    <% if(md['buttons']){ %>
+    <div class="tagC">
+        <%for(var i=0;i<md['buttons'].length;i++){%>
+        <button class="box aTagButton orangeButton J-dialogButton <%= md['buttons'][i][1]%>">
+            <%= md['buttons'][i][0]%>
+        </button>
+        <%}%>
+    </div>
+    <% }%>
+	</p>
+</div>

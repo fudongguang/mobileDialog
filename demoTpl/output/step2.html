@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=640, target-densitydpi=320, user-scalable=0" name="viewport"/>
+    <title>更换账号</title>
+    <link rel="stylesheet" type="text/css" href="build/build.css?vv=20140115092954"/>
+    <script type="text/javascript" src="build/viewport.js?vv=20140115092954"></script>
+</head>
+<body class="bodyLoading">
+<div class="wrapper step3">
+    <div class="content">
+        <div class="tag">
+            <label class="blockLable">请输入您要更换的新手机号码：</label>
+            <input type="tel" maxlength="11" class="inputText" id="phone" />
+            <div class="blockLable">此手机号码用来接收验证码，请仔细填写</div>
+            <button class="aTagButton orangeButton" id="getCode" style="width: 100%;">获取验证码</button>
+        </div>
+        <div class="tag">
+            <label class="blockLable">请输入验证码：</label>
+            <input type="tel" maxlength="11" class="inputText" id="code"/>
+            <label class="blockLable">
+            <button class="aTagButton orangeButton" style="width: 100%" id="checkCode">继 续</button>
+            </label>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="build/zepto.min.js"></script>
+<script type="text/javascript" src="build/build.js?vv=20140115092954"></script>
+
+</body>
+</html>

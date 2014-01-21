@@ -1,0 +1,11 @@
+/*demoDialog*/
+.demoDialog{
+	color: #fff;
+	text-align: center;
+}
+
+
+.demoDialog .aTagButton{
+	margin-right: 30px;
+	margin-left: 30px;
+}
