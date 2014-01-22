@@ -45,3 +45,37 @@
 
 	};
 })();
+
+
+(function(){
+	window.com={
+
+		//渲染数据返回html
+		getRender: function (url, config) {
+			return new EJS({url: url}).render({md: config})
+		},
+
+		dialog:function(config){
+			if(!config.content){
+				var url = config.url || 'tpl/dialog';//这个是模板文件
+				delete config.url;
+				config.content = this.getRender(url,config);//获取渲染后的html
+			}
+			return dialog(config);
+		},
+		alert:function(config){
+
+			if(!config){
+				config={};
+			}
+			if(!config.content){
+				config.url = config.url || 'tpl/alert';//这个是模板文件
+			}
+
+			config.className='alertDialog';
+
+			return this.dialog(config)
+		}
+
+	};
+})();
